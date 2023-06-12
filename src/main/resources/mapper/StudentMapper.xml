@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.grace.mapper.StudentMapper">
+
+    <resultMap id="studentMap" type="cn.grace.dto.StudentDTO">
+        <id property="stuId" column="id"/>
+        <result property="stuName" column="name"/>
+        <result property="stuAge" column="age"/>
+        <result property="stuScore" column="score"/>
+        <result property="stuTime" column="time"/>
+    </resultMap>
+
+    <select id="getAllStudent" resultMap="studentMap">
+        select * from grace.student
+    </select>
+
+    <select id="getStudentById" parameterType="integer" resultMap="studentMap">
+        select * from grace.student where id = #{id}
+    </select>
+
+    <insert id="addStudent" parameterType="studentDTO">
+        insert into grace.student (name,age,score) values (#{stuName},#{stuAge},#{stuScore})
+    </insert>
+</mapper>
